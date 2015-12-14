@@ -1,0 +1,45 @@
+{
+  "name": "react_blog",
+  "version": "1.0.0",
+  "description": "react blog webpack gulp node express css3 html mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iluck/react_blog.git"
+  },
+  "keywords": [
+    "react",
+    "blog",
+    "gulp",
+    "webpack",
+    "node",
+    "express"
+  ],
+  "author": "FIR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iluck/react_blog/issues"
+  },
+  "homepage": "https://github.com/iluck/react_blog#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "history": "^1.13.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel": "^6.3.13",
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.3.13",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-webpack": "^1.5.0",
+    "webpack": "^1.12.9"
+  }
+}
