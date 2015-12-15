@@ -1,11 +1,51 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var webpack = require('gulp-webpack');
+var webpack = require('gulp-webpack');//连接webpack.config.js
+var nodemon = require('gulp-nodemon');//实时重启服务
+var runSequence = require('run-sequence');//任务先后順序
+var changed = require('gulp-changed');//过滤变动的文件
+var plumber = require('gulp-plumber');//捕获处理任务中的错误
+
+var config = require('./webpack.config.js');
+var reactjspath = 'src/components/*.js';
+var scsspath = 'src/assets/*.scss';
+
+
+gulp.task('sass', function (){
+	return gulp.src(scsspath)
+	.pipe(plumber())
+	.pipe(changed('./src/output'))
+	.pipe(sass({outputStyle:'expanded'}))
+	.pipe(gulp.dest('./src/output')) 
+});
 
 gulp.task('webpack', function (){
-	gulp.src('./src/components/*.js')
-	.pipe(webpack( require('./webpack.config.js') ))
+	return gulp.src(reactjspath)
+	.pipe(plumber())
+	.pipe(changed('./src/output'))
+	.pipe(webpack(config))
   	.pipe(gulp.dest('./src/output'));
 });
 
-gulp.task('default', ['webpack']);
+gulp.task('nodemon', function() {
+	nodemon({
+		script: 'app.js',
+		ext: 'js jsx scss'
+		/*env: {
+			'NODE_ENV': 'development'
+		}*/
+	})
+});
+
+gulp.task('watch',function (){
+	gulp.watch(scsspath, ['sass']);
+	gulp.watch(reactjspath,['webpack']);
+});
+
+gulp.task('default', function(callback){
+	 runSequence(
+	 	['sass', 'webpack', 'watch'],
+	 	'nodemon',
+	 	callback
+	 )
+});
