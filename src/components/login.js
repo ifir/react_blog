@@ -1,20 +1,17 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Buttons = require('./btns/btns.js');
+//var Buttons = require('./btns/btns.js');
 
-var Box = React.createClass({
+var Login = React.createClass({
 	render : function (){
 		return (
-			
-			<Buttons />
-
+			<h2>我是第二个页面</h2>
 		)
-		
 	}
 })
 
 ReactDOM.render(
- <Box />,
+ <Login />,
   document.getElementById('app')
 );
