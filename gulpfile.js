@@ -7,7 +7,7 @@ var changed = require('gulp-changed');//过滤变动的文件
 var plumber = require('gulp-plumber');//捕获处理任务中的错误
 
 var config = require('./webpack.config.js');
-var reactjspath = 'src/components/*.js';
+var reactjspath = 'src/components/**/*.js';
 var scsspath = 'src/assets/*.scss';
 
 

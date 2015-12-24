@@ -1,11 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Buttons = require('./btns/btns.js');
+
 var Box = React.createClass({
 	render : function (){
 		return (
-			<h1>Hello World!</h1>
-			)
+			
+			<Buttons />
+
+		)
+		
 	}
 })
 

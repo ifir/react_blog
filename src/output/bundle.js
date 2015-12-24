@@ -47,15 +47,13 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
+	var Buttons = __webpack_require__(159);
+
 	var Box = React.createClass({
 		displayName: 'Box',
 
 		render: function () {
-			return React.createElement(
-				'h1',
-				null,
-				'Hello World!'
-			);
+			return React.createElement(Buttons, null);
 		}
 	});
 
@@ -19647,6 +19645,43 @@
 
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var Buttons = React.createClass({
+		displayName: "Buttons",
+
+		getInitialState: function () {
+			return {
+				num: 0
+			};
+		},
+		handleClick: function () {
+			this.setState({
+				num: this.state.num += 1
+			});
+		},
+		render: function () {
+			return React.createElement(
+				"div",
+				null,
+				React.createElement("input", { type: "button", value: "点我", onClick: this.handleClick }),
+				React.createElement(
+					"p",
+					null,
+					"你点了",
+					this.state.num,
+					"下"
+				)
+			);
+		}
+	});
+
+	module.exports = Buttons;
 
 /***/ }
 /******/ ]);
