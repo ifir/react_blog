@@ -1,7 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-
-//var Buttons = require('./btns/btns.js');
 
 var Login = React.createClass({
 	render : function (){
@@ -11,7 +8,4 @@ var Login = React.createClass({
 	}
 })
 
-ReactDOM.render(
- <Login />,
-  document.getElementById('app')
-);
+module.exports = Login;

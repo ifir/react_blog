@@ -1,22 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Buttons = require('./btns/btns.js');
-//var Routes = require('./routes/index.js');
+//路由
 
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route;
 var Link = ReactRouter.Link;
 
-/*var Routes = (
-	<Router>
-		<Route path="/" component={Index}>
-			<Route path="login" component={Login}/>
-		<Route>
-	</Route>
-)*/
-
+//组件
+var Buttons = require('./btns/btns.js');
+var Login  = require('./login.js');
 
 var Index = React.createClass({
 	render : function (){
@@ -30,26 +24,16 @@ var Index = React.createClass({
 		)
 	}
 })
-
-
-var Login = React.createClass({
-	render : function (){
-		return (
-			<h2>我是第二个页面</h2>
-		)
-	}
-})
-
-
-
-
-ReactDOM.render(
- (
+//设置react路由
+var R = (
 	<Router>
 		<Route path="/" component={Index}>
 			<Route path="login" component={Login} />
 		</Route>
 	</Router>
-),
+);
+
+ReactDOM.render(
+ R,
   document.getElementById('app')
 );
