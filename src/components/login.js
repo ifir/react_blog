@@ -3,7 +3,10 @@ var React = require('react');
 var Login = React.createClass({
 	render : function (){
 		return (
-			<h2>我是第二个页面</h2>
+			<div>
+				<h2>我是第二个页面</h2>
+				{this.props.children}
+			</div>
 		)
 	}
 })

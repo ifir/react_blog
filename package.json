@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iluck/react_blog.git"
+    "url": "git+https://github.com/ifir/react_blog.git"
   },
   "keywords": [
     "react",
@@ -21,14 +21,15 @@
   "author": "FIR",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iluck/react_blog/issues"
+    "url": "https://github.com/ifir/react_blog/issues"
   },
-  "homepage": "https://github.com/iluck/react_blog#readme",
+  "homepage": "https://github.com/ifir/react_blog#readme",
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "express-react-views": "^0.9.0",
     "history": "^1.13.1",
+    "mongoose": "^4.3.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^1.0.2"
