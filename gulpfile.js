@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass');//编译sass
 var webpack = require('gulp-webpack');//连接webpack.config.js
 var nodemon = require('gulp-nodemon');//实时重启服务
 var runSequence = require('run-sequence');//任务先后順序
@@ -8,15 +8,15 @@ var plumber = require('gulp-plumber');//捕获处理任务中的错误
 
 var config = require('./webpack.config.js');
 var reactjspath = 'src/components/**/*.js';
-var scsspath = 'src/assets/*.scss';
+var scsspath = 'src/assets/styles/*.scss';
 
 
 gulp.task('sass', function (){
 	return gulp.src(scsspath)
 	.pipe(plumber())
-	.pipe(changed('./src/output'))
+	.pipe(changed('./src/output/css'))
 	.pipe(sass({outputStyle:'expanded'}))
-	.pipe(gulp.dest('./src/output')) 
+	.pipe(gulp.dest('./src/output/css'))
 });
 
 gulp.task('webpack', function (){

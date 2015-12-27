@@ -1,7 +1,7 @@
 var path = require('path');
 
 var config = {
-	entry: './src/components/index.js',
+	entry: './src/components/main.js',
 	output: {
 		path: path.join(__dirname, 'output'),
 		filename: 'bundle.js'

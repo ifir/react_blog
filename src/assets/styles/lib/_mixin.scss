@@ -1,0 +1,54 @@
+@mixin translate3d($value...)
+{
+    -webkit-transform: translate3d($value);
+       -moz-transform: translate3d($value);
+        -ms-transform: translate3d($value);
+         -o-transform: translate3d($value);
+            transform: translate3d($value);
+}
+@mixin scale3d($value...)
+{
+    -webkit-transform: scale3d($value);
+       -moz-transform: scale3d($value);
+        -ms-transform: scale3d($value);
+         -o-transform: scale3d($value);
+            transform: scale3d($value);
+}
+@mixin rotate3d($value...)
+{
+    -webkit-transform: rotate3d($value);
+       -moz-transform: rotate3d($value);
+        -ms-transform: rotate3d($value);
+         -o-transform: rotate3d($value);
+            transform: rotate3d($value);
+}
+@mixin transition($value...)
+{
+    -webkit-transition: $value;
+       -moz-transition: $value;
+        -ms-transition: $value;
+         -o-transition: $value;
+            transition: $value;
+}
+@mixin origin($value...)
+{
+    -webkit-transform-origin: $value;
+       -moz-transform-origin: $value;
+        -ms-transform-origin: $value;
+         -o-transform-origin: $value;
+            transform-origin: $value;
+}
+@mixin sizing
+{
+    -webkit-box-sinzing: border-box;
+       -moz-box-sinzing: border-box;
+        -ms-box-sinzing: border-box;
+         -o-box-sinzing: border-box;
+            box-sinzing: border-box;
+}
+@mixin shadow($value...)
+{
+    -webkit-box-shadow: $value;
+       -moz-box-shadow: $value;
+            box-shadow: $value;
+}
