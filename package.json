@@ -16,7 +16,10 @@
     "gulp",
     "webpack",
     "node",
-    "express"
+    "express",
+    "react-router",
+    "mongodb",
+    "babel"
   ],
   "author": "FIR",
   "license": "MIT",
