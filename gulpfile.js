@@ -24,7 +24,7 @@ gulp.task('webpack', function (){
 	.pipe(plumber())
 	.pipe(changed('./src/output'))
 	.pipe(webpack(config))
-  	.pipe(gulp.dest('./src/output'));
+  	.pipe(gulp.dest('./src/output/js'));
 });
 
 gulp.task('nodemon', function() {

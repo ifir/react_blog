@@ -18,7 +18,8 @@ var DefaultLayout = React.createClass({
         <body>
           {this.props.children}
           <div id="app"></div>
-        	<script src="bundle.js"></script>
+          <script src="js/zepto.min.js"></script>
+        	<script src="js/bundle.js"></script>
         </body>
       </html>
     );
