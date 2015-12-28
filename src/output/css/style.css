@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html,
 body,
 div,
@@ -222,12 +223,148 @@ i {
 body, html {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix:after {
+  content: '';
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.btn {
+  outline: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-box-sinzing: border-box;
+  -moz-box-sinzing: border-box;
+  -ms-box-sinzing: border-box;
+  -o-box-sinzing: border-box;
+  box-sinzing: border-box;
+}
+
+.btn-default {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #222;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.container {
+  width: 100%;
+  min-height: 1px;
+}
+
+/* 顶部导航栏 */
 .navbar {
   width: 100%;
   height: 50px;
   background: blue;
   text-align: center;
   line-height: 50px;
+}
+
+/* 底部导航栏 */
+.footer {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  z-index: 999;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  -webkit-box-shadow: 0 -2px 2px #ccc;
+  -moz-box-shadow: 0 -2px 2px #ccc;
+  box-shadow: 0 -2px 2px #ccc;
+}
+
+.footer ul {
+  overflow: hidden;
+}
+
+.footer ul li {
+  float: left;
+  width: 33.333333%;
+  line-height: 50px;
+}
+
+.footer ul li a {
+  color: #222;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.footer ul li:hover a {
+  color: red;
+}
+
+.footer ul .active a {
+  color: red;
+}
+
+form {
+  background: green;
+}
+
+.example-enter {
+  opacity: 0.01;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
 }
