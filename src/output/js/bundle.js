@@ -45,20 +45,27 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
+	var ReactDOM = __webpack_require__(158); //render react
+	//react adds css animate
 	var ReactCSSTransitionGroup = __webpack_require__(159);
 
 	//react-router
 	var ReactRouter = __webpack_require__(165);
 	var Router = ReactRouter.Router;
 	var Route = ReactRouter.Route;
-	var Link = ReactRouter.Link;
+	var Link = ReactRouter.Link; //链接模块  可看成a
+	var IndexRoute = ReactRouter.IndexRoute; //默认加载的路由
+	var IndexLink = ReactRouter.IndexLink; //默认加载的link
+	var browserHistory = ReactRouter.browserHistory;
 
 	//引入组件
-	var Nav = __webpack_require__(216);
-	var Footer = __webpack_require__(217);
-	var Login = __webpack_require__(218);
-	//组件
+	var Nav = __webpack_require__(216); //顶部导航栏
+	var Footer = __webpack_require__(217); //底部导航栏
+	var Home = __webpack_require__(218); //首页页面
+	var Login = __webpack_require__(219); //登陆页面
+	var Message = __webpack_require__(222); //消息页面
+	//组件总容器
+	//this.props.location.pathname
 	var Main = React.createClass({
 		displayName: 'Main',
 
@@ -72,11 +79,7 @@
 					React.createElement(Nav, null),
 					React.createElement(Footer, null)
 				),
-				React.createElement(
-					ReactCSSTransitionGroup,
-					{ component: 'div', transitionName: 'example', transitionEnterTimeout: 2000, transitionLeaveTimeout: 2000 },
-					this.props.children
-				)
+				this.props.children
 			);
 		}
 	});
@@ -84,10 +87,12 @@
 	//设置react路由
 	var R = React.createElement(
 		Router,
-		null,
+		{ histroy: browserHistory },
 		React.createElement(
 			Route,
 			{ path: '/', component: Main },
+			React.createElement(Route, { path: 'home/:id', component: Home }),
+			React.createElement(Route, { path: 'message', component: Message }),
 			React.createElement(Route, { path: 'login', component: Login })
 		)
 	);
@@ -25286,7 +25291,7 @@
 							{ className: 'active' },
 							React.createElement(
 								Link,
-								{ to: '/' },
+								{ to: '/home/23456' },
 								'首页'
 							)
 						),
@@ -25295,7 +25300,7 @@
 							null,
 							React.createElement(
 								Link,
-								{ to: '/' },
+								{ to: '/message' },
 								'消息'
 							)
 						),
@@ -25304,7 +25309,7 @@
 							null,
 							React.createElement(
 								Link,
-								{ to: '/login' },
+								{ to: '/login/?name=fir' },
 								'我的'
 							)
 						)
@@ -25319,14 +25324,52 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Btn = __webpack_require__(219);
-	var Form = __webpack_require__(220);
+
+	module.exports = React.createClass({
+		displayName: 'exports',
+
+		getInitialState: function () {
+			return { message: '' };
+		},
+		componentDidMount: function () {
+			// from the path `/inbox/messages/:id`
+			var id = this.props.params.id;
+
+			this.setState({ message: id });
+		},
+		render: function () {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h1',
+					null,
+					'我是首页'
+				),
+				React.createElement(
+					'p',
+					null,
+					'aa',
+					this.state.message
+				)
+			);
+		}
+	});
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Btn = __webpack_require__(220);
+	var Form = __webpack_require__(221);
 	module.exports = React.createClass({
 		displayName: 'exports',
 
 		getInitialState: function () {
 			return {
-				display: ''
+				display: '',
+				msg: this.props.location.query.name
 			};
 		},
 		handleClick: function () {
@@ -25338,6 +25381,17 @@
 			return React.createElement(
 				'div',
 				null,
+				React.createElement(
+					'p',
+					null,
+					'地址:',
+					this.state.msg
+				),
+				React.createElement(
+					'h2',
+					null,
+					this.props.location.query.name
+				),
 				React.createElement(Form, { formDisplay: this.state.display }),
 				React.createElement(Btn, { handleClick: this.handleClick })
 			);
@@ -25345,7 +25399,7 @@
 	});
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25363,7 +25417,7 @@
 	});
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25396,6 +25450,29 @@
 				React.createElement('br', null),
 				React.createElement('br', null),
 				React.createElement('input', { type: 'button', className: 'btn btn-default', onClick: this.handleClick, value: '提交' })
+			);
+		}
+	});
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	module.exports = React.createClass({
+		displayName: 'exports',
+
+		render: function () {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'p',
+					null,
+					'地址:',
+					this.props.location.pathname
+				)
 			);
 		}
 	});
