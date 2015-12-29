@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom'); //render react
 //react adds css animate
-var ReactCSSTransitionGroup  = require('react/lib/ReactCSSTransitionGroup');
+//var ReactCSSTransitionGroup  = require('react/lib/ReactCSSTransitionGroup');
 
 //react-router
 var ReactRouter = require('react-router');
