@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Btn = require('./btn.js');
 var Form = require('./form.js');
 var Login = React.createClass({
@@ -13,10 +14,17 @@ var Login = React.createClass({
 			display: this.state.display == ''? 'show' : ''
 		})
 	},
+	componentDidMount:function(){
+		var box = ReactDOM.findDOMNode(this.refs.box);
+		setTimeout(function(){
+			//$('.opacityup-enter').addClass('opacityup-enter-active');
+			box.classList.add('opacityup-enter-active');
+		},10)
+	},
 	render : function (){
 
 		return (
-			<div>
+			<div ref="box" className="login-box opacityup-enter">
 				<p>地址:{this.state.msg}</p>
 				<h2>{this.props.location.query.name}</h2>
 				<Form formDisplay={this.state.display} />

@@ -80,22 +80,17 @@
 				opacity: this.state.opacity == '' ? 'opacity' : ''
 			});
 		},
-
 		render: function () {
 			return React.createElement(
 				'div',
-				null,
-				React.createElement(
-					'div',
-					{ className: 'home-page' },
-					React.createElement(Nav, null),
-					React.createElement(Footer, null)
-				),
+				{ className: 'main-box' },
+				React.createElement(Nav, null),
 				React.cloneElement(this.props.children, {
 					animate: this.state.opacity,
 					classOpacity: this.state.opacity,
 					handleClick: this.handleClick
-				})
+				}),
+				React.createElement(Footer, null)
 			);
 		}
 	});
@@ -24563,15 +24558,17 @@
 			return { message: '' };
 		},
 		componentDidMount: function () {
-			// from the path `/inbox/messages/:id`
 			var id = this.props.params.id;
 
 			this.setState({ message: id });
+			setTimeout(function () {
+				$('.opacityup-enter').addClass('opacityup-enter-active');
+			}, 10);
 		},
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: this.props.classOpacity },
+				{ className: 'home-box opacityup-enter' },
 				React.createElement(
 					'h1',
 					null,
@@ -24581,8 +24578,13 @@
 				React.createElement(Article, null),
 				React.createElement(
 					'p',
+					{ className: this.props.classOpacity },
+					'？？？？？？？'
+				),
+				React.createElement(
+					'p',
 					{ onClick: this.props.handleClick },
-					'呵呵',
+					'点我',
 					this.props.animate
 				)
 			);
@@ -24632,15 +24634,23 @@
 				React.createElement(
 					"section",
 					{ className: "article-info" },
-					React.createElement("div", null)
+					React.createElement(
+						"div",
+						{ className: "article-content" },
+						React.createElement(
+							"p",
+							null,
+							"先从漫画整体来说，因为本周漫画最后大妈的实力尾随到了象岛导致现在局面比较混乱。路飞现在看来惹到了除红发以外的所谓四皇，首先在鱼人岛跟大妈结下了梁子。这次因为抢夺凯撒可能又会惹到大妈。其次就是凯多，因为击败小唐已经惹到了凯多。而在象岛山治击败了凯多的一个手下。而路飞在这话也说了要打飞凯多。在德雷斯罗萨冠军和黑胡子跟路飞以往的那些事情，跟黑胡子也有梁子。而黑胡子已经摸到了革命军的总部，而那里有路飞的老爸和萨博。"
+						)
+					)
 				),
 				React.createElement(
 					"section",
 					{ className: "article-img" },
 					React.createElement(
 						"div",
-						null,
-						React.createElement("img", { src: "", alt: "" })
+						{ className: "user-img text-center" },
+						React.createElement("img", { src: "img/pic1.jpg", alt: "" })
 					)
 				),
 				React.createElement("footer", { className: "article-footer" })
@@ -24653,6 +24663,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
 	var Btn = __webpack_require__(215);
 	var Form = __webpack_require__(216);
 	var Login = React.createClass({
@@ -24669,11 +24680,18 @@
 				display: this.state.display == '' ? 'show' : ''
 			});
 		},
+		componentDidMount: function () {
+			var box = ReactDOM.findDOMNode(this.refs.box);
+			setTimeout(function () {
+				//$('.opacityup-enter').addClass('opacityup-enter-active');
+				box.classList.add('opacityup-enter-active');
+			}, 10);
+		},
 		render: function () {
 
 			return React.createElement(
 				'div',
-				null,
+				{ ref: 'box', className: 'login-box opacityup-enter' },
 				React.createElement(
 					'p',
 					null,
@@ -24758,11 +24776,6 @@
 	module.exports = React.createClass({
 		displayName: 'exports',
 
-		getInitialState: function () {
-			return {
-				mounted: false
-			};
-		},
 		componentDidMount: function () {
 			setTimeout(function () {
 				$('.opacityup-enter').addClass('opacityup-enter-active');
@@ -24771,7 +24784,7 @@
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: 'opacityup-enter', ref: 'box' },
+				{ className: 'message-box opacityup-enter' },
 				React.createElement(
 					'p',
 					null,

@@ -5,18 +5,20 @@ module.exports = React.createClass({
 		return {message:''}
 	},
 	componentDidMount:function() {
-    // from the path `/inbox/messages/:id`
 	    var id = this.props.params.id
 
 	      this.setState({ message: id })
-
+	      setTimeout(function(){
+	      		$('.opacityup-enter').addClass('opacityup-enter-active');
+	      },10)
 	},
 	render:function(){
 		return (
-			<div className={this.props.classOpacity}>
+			<div className="home-box opacityup-enter">
 				<h1>我是首页,url:{this.state.message}</h1>
 				<Article />
-				<p onClick={this.props.handleClick}>呵呵{this.props.animate}</p>
+				<p className={this.props.classOpacity}>？？？？？？？</p>
+				<p onClick={this.props.handleClick}>点我{this.props.animate}</p>
 			</div>
 		)
 	}

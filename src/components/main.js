@@ -32,28 +32,16 @@ var Main = React.createClass({
 			opacity:this.state.opacity == '' ? 'opacity' : ''
 		})
 	},
-	
 	render : function (){
 		return (
-			<div>
-				<div className="home-page">
-					<Nav />
-					<Footer />
-				</div>
-				{/* 动画插件 */}
-				{// <ReactCSSTransitionGroup component="div" transitionName="opacityup" transitionEnterTimeout={300} transitionLeave={false}>
-					// 	{this.props.children}
-				// </ReactCSSTransitionGroup>
-				}
-				{ 
-				React.cloneElement(this.props.children, {
+			<div className="main-box">
+				<Nav />
+				{React.cloneElement(this.props.children, {
 		            animate:this.state.opacity,
 		            classOpacity:this.state.opacity,
 		            handleClick:this.handleClick
-		          }) 
-				}
-				{//this.props.children
-				}
+		          })}
+				<Footer />
 			</div>
 		)
 	}

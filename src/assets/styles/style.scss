@@ -2,12 +2,6 @@
 @import './lib/skin.scss';
 @import './lib/mixin.scss';
 
-
-body, html{
-	width:100%;
-	height:100%;
-	position:relative;
-}
 .text-left{
 	text-align:left;
 }
@@ -62,6 +56,8 @@ body, html{
 	width:100%;
 	min-height:1px;
 }
+
+
 /* 顶部导航栏 */
 .navbar{
 	width:100%;
@@ -69,6 +65,10 @@ body, html{
 	background:$color-a;
 	text-align:center;
 	line-height:50px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:999;
 }
 /* 底部导航栏 */
 .footer{
@@ -79,6 +79,7 @@ body, html{
 	background:#fff;
 	bottom:0;
 	left:0;
+	z-index:999;
 	@include shadow(0 -2px 2px #ccc);
 	ul{
 		overflow: hidden;
@@ -128,7 +129,6 @@ body, html{
 
 /* 文章 */
 .article-box{
-
 	.article-info, .article-info, .article-img{
 		padding:0 10px;
 	}
@@ -155,4 +155,27 @@ body, html{
 			}
 		}
 	}
+	.user-img{
+
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		line-height: 200px;
+		img{
+			width: 100%;
+			height: auto;
+		}
+
+	}
 }
+
+/* 我的消息 */
+#app{
+	max-height:100%;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+.home-box, .message-box, .login-box{
+	padding:60px 0;
+}
+

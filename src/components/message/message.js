@@ -1,11 +1,6 @@
 var React = require('react');
 
 module.exports = React.createClass({
-	getInitialState:function(){
-		return {
-			mounted:false
-		}
-	},
 	componentDidMount : function(){
 		setTimeout(function(){
 			$('.opacityup-enter').addClass('opacityup-enter-active');
@@ -13,7 +8,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<div className="opacityup-enter" ref="box">
+			<div className="message-box opacityup-enter">
 				{
 					//获取url上的地址this.props.location.pathname
 				}
