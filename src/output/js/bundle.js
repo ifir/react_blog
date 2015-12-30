@@ -62,8 +62,8 @@
 	var Nav = __webpack_require__(210); //顶部导航栏
 	var Footer = __webpack_require__(211); //底部导航栏
 	var Home = __webpack_require__(212); //首页页面
-	var Login = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./login/login.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //登陆页面
-	var Message = __webpack_require__(215); //消息页面
+	var Login = __webpack_require__(214); //登陆页面
+	var Message = __webpack_require__(217); //消息页面
 	//组件总容器
 	//this.props.location.pathname
 	var Main = React.createClass({
@@ -72,8 +72,7 @@
 		//声明初始状态
 		getInitialState: function () {
 			return {
-				opacity: '',
-				mounted: false
+				opacity: ''
 			};
 		},
 		handleClick: function () {
@@ -81,17 +80,8 @@
 				opacity: this.state.opacity == '' ? 'opacity' : ''
 			});
 		},
-		//首次渲染后改变状态
-		componentDidMount: function () {
-			this.setState({ mounted: true });
-		},
 
-		//isMounted()如果组件渲染到了 DOM 中，isMounted() 返回 true
-		//校验属性值，无效时不刷新界面
-		/*shouldComponentUpdate : function(nextProps,nextState){
-	 	if(nextProps.value > 220 || nextProps.value<0) return false;
-	 	return true;
-	 },*/render: function () {
+		render: function () {
 			return React.createElement(
 				'div',
 				null,
@@ -99,7 +89,7 @@
 					'div',
 					{ className: 'home-page' },
 					React.createElement(Nav, null),
-					React.createElement(Footer, { handleClick: this.handleClick })
+					React.createElement(Footer, null)
 				),
 				React.cloneElement(this.props.children, {
 					animate: this.state.opacity,
@@ -117,6 +107,7 @@
 		React.createElement(
 			Route,
 			{ path: '/', component: Main },
+			React.createElement(IndexRoute, { component: Home }),
 			React.createElement(Route, { path: 'home/:id', component: Home }),
 			React.createElement(Route, { path: 'message', component: Message }),
 			React.createElement(Route, { path: 'login', component: Login })
@@ -1140,7 +1131,7 @@
 	 * will remain to ensure logic does not differ in production.
 	 */
 
-	var invariant = function (condition, format, a, b, c, d, e, f) {
+	function invariant(condition, format, a, b, c, d, e, f) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    if (format === undefined) {
 	      throw new Error('invariant requires an error message argument');
@@ -1154,15 +1145,16 @@
 	    } else {
 	      var args = [a, b, c, d, e, f];
 	      var argIndex = 0;
-	      error = new Error('Invariant Violation: ' + format.replace(/%s/g, function () {
+	      error = new Error(format.replace(/%s/g, function () {
 	        return args[argIndex++];
 	      }));
+	      error.name = 'Invariant Violation';
 	    }
 
 	    error.framesToPop = 1; // we don't care about invariant's own frame
 	    throw error;
 	  }
-	};
+	}
 
 	module.exports = invariant;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -10589,8 +10581,8 @@
 	     */
 	    // autoCapitalize and autoCorrect are supported in Mobile Safari for
 	    // keyboard hints.
-	    autoCapitalize: null,
-	    autoCorrect: null,
+	    autoCapitalize: MUST_USE_ATTRIBUTE,
+	    autoCorrect: MUST_USE_ATTRIBUTE,
 	    // autoSave allows WebKit/Blink to persist values of input fields on page reloads
 	    autoSave: null,
 	    // color is for Safari mask-icon link
@@ -10621,9 +10613,7 @@
 	    httpEquiv: 'http-equiv'
 	  },
 	  DOMPropertyNames: {
-	    autoCapitalize: 'autocapitalize',
 	    autoComplete: 'autocomplete',
-	    autoCorrect: 'autocorrect',
 	    autoFocus: 'autofocus',
 	    autoPlay: 'autoplay',
 	    autoSave: 'autosave',
@@ -13702,7 +13692,7 @@
 	    var value = LinkedValueUtils.getValue(props);
 
 	    if (value != null) {
-	      updateOptions(this, props, value);
+	      updateOptions(this, Boolean(props.multiple), value);
 	    }
 	  }
 	}
@@ -16741,15 +16731,11 @@
 	 * Same as document.activeElement but wraps in a try-catch block. In IE it is
 	 * not safe to call document.activeElement if there is nothing focused.
 	 *
-	 * The activeElement will be null only if the document or document body is not yet defined.
+	 * The activeElement will be null only if the document body is not yet defined.
 	 */
-	'use strict';
+	"use strict";
 
 	function getActiveElement() /*?DOMElement*/{
-	  if (typeof document === 'undefined') {
-	    return null;
-	  }
-
 	  try {
 	    return document.activeElement || document.body;
 	  } catch (e) {
@@ -18489,7 +18475,9 @@
 	  'setValueForProperty': 'update attribute',
 	  'setValueForAttribute': 'update attribute',
 	  'deleteValueForProperty': 'remove attribute',
-	  'dangerouslyReplaceNodeWithMarkupByID': 'replace'
+	  'setValueForStyles': 'update styles',
+	  'replaceNodeWithMarkup': 'replace',
+	  'updateTextContent': 'set textContent'
 	};
 
 	function getTotalTime(measurements) {
@@ -18681,18 +18669,23 @@
 	'use strict';
 
 	var performance = __webpack_require__(145);
-	var curPerformance = performance;
+
+	var performanceNow;
 
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
 	 * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
 	 * because of Facebook's testing infrastructure.
 	 */
-	if (!curPerformance || !curPerformance.now) {
-	  curPerformance = Date;
+	if (performance.now) {
+	  performanceNow = function () {
+	    return performance.now();
+	  };
+	} else {
+	  performanceNow = function () {
+	    return Date.now();
+	  };
 	}
-
-	var performanceNow = curPerformance.now.bind(curPerformance);
 
 	module.exports = performanceNow;
 
@@ -18741,7 +18734,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.3';
+	module.exports = '0.14.5';
 
 /***/ },
 /* 147 */
@@ -24526,7 +24519,7 @@
 						{ className: 'clearfix text-center' },
 						React.createElement(
 							'li',
-							{ onClick: this.props.handleClick, className: 'active' },
+							{ className: 'active' },
 							React.createElement(
 								Link,
 								{ to: '/home/23456' },
@@ -24535,7 +24528,7 @@
 						),
 						React.createElement(
 							'li',
-							{ onClick: this.props.handleClick },
+							null,
 							React.createElement(
 								Link,
 								{ to: '/message' },
@@ -24544,7 +24537,7 @@
 						),
 						React.createElement(
 							'li',
-							{ onClick: this.props.handleClick },
+							null,
 							React.createElement(
 								Link,
 								{ to: '/login/?name=fir' },
@@ -24656,8 +24649,108 @@
 	});
 
 /***/ },
-/* 214 */,
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Btn = __webpack_require__(215);
+	var Form = __webpack_require__(216);
+	var Login = React.createClass({
+		displayName: 'Login',
+
+		getInitialState: function () {
+			return {
+				display: '',
+				msg: this.props.location.query.name
+			};
+		},
+		handleClick: function () {
+			this.setState({
+				display: this.state.display == '' ? 'show' : ''
+			});
+		},
+		render: function () {
+
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'p',
+					null,
+					'地址:',
+					this.state.msg
+				),
+				React.createElement(
+					'h2',
+					null,
+					this.props.location.query.name
+				),
+				React.createElement(Form, { formDisplay: this.state.display }),
+				React.createElement(Btn, { handleClick: this.handleClick })
+			);
+		}
+	});
+
+	module.exports = Login;
+
+/***/ },
 /* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	module.exports = React.createClass({
+		displayName: "exports",
+
+		render: function () {
+			return React.createElement(
+				"button",
+				{ className: "btn btn-default", onClick: this.props.handleClick },
+				"点我"
+			);
+		}
+	});
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	//var ajax = require('reqwest');
+	module.exports = React.createClass({
+		displayName: 'exports',
+
+		handleClick: function () {
+			$.ajax({
+				url: '/login',
+				type: 'POST',
+				dataType: 'json',
+				data: $('form').serialize(),
+				success: function (res) {},
+				error: function (err) {}
+			});
+		},
+		render: function () {
+			return React.createElement(
+				'form',
+				{ className: "hide " + this.props.formDisplay },
+				React.createElement(
+					'h3',
+					null,
+					'表单'
+				),
+				React.createElement('input', { name: 'user', type: 'text' }),
+				React.createElement('input', { name: 'psd', type: 'password' }),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('input', { type: 'button', className: 'btn btn-default', onClick: this.handleClick, value: '提交' })
+			);
+		}
+	});
+
+/***/ },
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -24665,10 +24758,20 @@
 	module.exports = React.createClass({
 		displayName: 'exports',
 
+		getInitialState: function () {
+			return {
+				mounted: false
+			};
+		},
+		componentDidMount: function () {
+			setTimeout(function () {
+				$('.opacityup-enter').addClass('opacityup-enter-active');
+			}, 10);
+		},
 		render: function () {
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'opacityup-enter', ref: 'box' },
 				React.createElement(
 					'p',
 					null,

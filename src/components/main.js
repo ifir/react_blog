@@ -24,42 +24,36 @@ var Main = React.createClass({
 	//声明初始状态
 	getInitialState : function(){
 		return {
-			opacity : '',
-			mounted: false
-		};
+			opacity : ''
+		}
 	},
 	handleClick:function(){
 		this.setState({
 			opacity:this.state.opacity == '' ? 'opacity' : ''
 		})
 	},
-	//首次渲染后改变状态
-	componentDidMount : function(){
-		this.setState({mounted : true});
-	},
-	//isMounted()如果组件渲染到了 DOM 中，isMounted() 返回 true
-	//校验属性值，无效时不刷新界面
-	/*shouldComponentUpdate : function(nextProps,nextState){
-		if(nextProps.value > 220 || nextProps.value<0) return false;
-		return true;
-	},*/
+	
 	render : function (){
 		return (
 			<div>
 				<div className="home-page">
 					<Nav />
-					<Footer handleClick={this.handleClick} />
+					<Footer />
 				</div>
 				{/* 动画插件 */}
 				{// <ReactCSSTransitionGroup component="div" transitionName="opacityup" transitionEnterTimeout={300} transitionLeave={false}>
 					// 	{this.props.children}
 				// </ReactCSSTransitionGroup>
 				}
-				{React.cloneElement(this.props.children, {
+				{ 
+				React.cloneElement(this.props.children, {
 		            animate:this.state.opacity,
 		            classOpacity:this.state.opacity,
 		            handleClick:this.handleClick
-		          })}
+		          }) 
+				}
+				{//this.props.children
+				}
 			</div>
 		)
 	}
@@ -69,6 +63,7 @@ var Main = React.createClass({
 var R = (
 	<Router histroy={browserHistory}>
 		<Route path="/" component={Main}>
+			<IndexRoute component={Home} />
 			<Route path="home/:id" component={Home} />
 			<Route path="message" component={Message} />
 			<Route path="login" component={Login} />
