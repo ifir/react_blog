@@ -37,6 +37,9 @@ body, html{
 .show{
 	display:block;
 }
+.img-radius{
+	border-radius:50%;
+}
 //按钮
 .btn{
 	outline:none;
@@ -87,9 +90,9 @@ body, html{
 				color: #222;
 				@include transition(all 1s ease)
 			}
-			&:hover a{
+			/* &:hover a{
 				color: red;
-			}
+			} */
 
 		}
 		.active a{
@@ -97,13 +100,14 @@ body, html{
 		}
 	}
 }
-form{
-	background:green;
+.opacity{
+	opacity: 0;
+	@include transition(all .3s ease-in);
 }
 .opacityup-enter {
   opacity: 0;
   @include translate3d(0,50px,0);
-  @include transition(all .3s ease-in);
+  @include transition(all .5s ease-in);
 }
 
 .opacityup-enter.opacityup-enter-active {
@@ -114,10 +118,41 @@ form{
 .opacityup-leave {
   opacity: 1;
   @include translate3d(0,0,0);
-  @include transition(all .3s ease-in);
+  @include transition(all .5s ease-in);
 }
 
 .opacityup-leave.opacityup-leave-active {
   opacity: 0;
   @include translate3d(0,50px,0);
+}
+
+/* 文章 */
+.article-box{
+
+	.article-info, .article-info, .article-img{
+		padding:0 10px;
+	}
+	.article-info{
+		.head-box{
+			width: 70px;
+			height: 70px;
+			line-height: 70px;
+			img{
+				width: 50px;
+				height: 50px;
+				vertical-align: middle;
+			}
+		}
+		.name-box{
+			margin-left:70px;
+			height: 70px;
+			overflow: hidden;
+			h3{
+				margin-top: 10px;
+			}
+			p{
+
+			}
+		}
+	}
 }

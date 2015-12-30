@@ -3,15 +3,15 @@ var React = require('react');
 module.exports = React.createClass({
 	render:function(){
 		return (
-			<article className="article-box">
+			<article className="container article-box">
 				<section className="article-info">
 					<div className="clearfix">
-						<div>
-							<img src="" alt="" />
+						<div className=" pull-left head-box img-radius text-center">
+							<img className="img-radius" src="img/head1.jpg" alt="" />
 						</div>
-						<div>
-							<h3></h3>
-							<p></p>
+						<div className="name-box">
+							<h3>FIR</h3>
+							<p>来自PC</p>
 						</div>
 					</div>
 				</section>

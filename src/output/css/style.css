@@ -263,6 +263,10 @@ body, html {
   display: block;
 }
 
+.img-radius {
+  border-radius: 50%;
+}
+
 .btn {
   outline: none;
   border: 0;
@@ -320,6 +324,9 @@ body, html {
   float: left;
   width: 33.333333%;
   line-height: 50px;
+  /* &:hover a{
+				color: red;
+			} */
 }
 
 .footer ul li a {
@@ -331,16 +338,17 @@ body, html {
   transition: all 1s ease;
 }
 
-.footer ul li:hover a {
-  color: red;
-}
-
 .footer ul .active a {
   color: red;
 }
 
-form {
-  background: green;
+.opacity {
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .opacityup-enter {
@@ -350,11 +358,11 @@ form {
   -ms-transform: translate3d(0, 50px, 0);
   -o-transform: translate3d(0, 50px, 0);
   transform: translate3d(0, 50px, 0);
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -ms-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .opacityup-enter.opacityup-enter-active {
@@ -373,11 +381,11 @@ form {
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -ms-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .opacityup-leave.opacityup-leave-active {
@@ -387,4 +395,31 @@ form {
   -ms-transform: translate3d(0, 50px, 0);
   -o-transform: translate3d(0, 50px, 0);
   transform: translate3d(0, 50px, 0);
+}
+
+/* 文章 */
+.article-box .article-info, .article-box .article-info, .article-box .article-img {
+  padding: 0 10px;
+}
+
+.article-box .article-info .head-box {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+}
+
+.article-box .article-info .head-box img {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.article-box .article-info .name-box {
+  margin-left: 70px;
+  height: 70px;
+  overflow: hidden;
+}
+
+.article-box .article-info .name-box h3 {
+  margin-top: 10px;
 }

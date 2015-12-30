@@ -62,14 +62,36 @@
 	var Nav = __webpack_require__(210); //顶部导航栏
 	var Footer = __webpack_require__(211); //底部导航栏
 	var Home = __webpack_require__(212); //首页页面
-	var Login = __webpack_require__(213); //登陆页面
-	var Message = __webpack_require__(216); //消息页面
+	var Login = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./login/login.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //登陆页面
+	var Message = __webpack_require__(215); //消息页面
 	//组件总容器
 	//this.props.location.pathname
 	var Main = React.createClass({
 		displayName: 'Main',
 
-		render: function () {
+		//声明初始状态
+		getInitialState: function () {
+			return {
+				opacity: '',
+				mounted: false
+			};
+		},
+		handleClick: function () {
+			this.setState({
+				opacity: this.state.opacity == '' ? 'opacity' : ''
+			});
+		},
+		//首次渲染后改变状态
+		componentDidMount: function () {
+			this.setState({ mounted: true });
+		},
+
+		//isMounted()如果组件渲染到了 DOM 中，isMounted() 返回 true
+		//校验属性值，无效时不刷新界面
+		/*shouldComponentUpdate : function(nextProps,nextState){
+	 	if(nextProps.value > 220 || nextProps.value<0) return false;
+	 	return true;
+	 },*/render: function () {
 			return React.createElement(
 				'div',
 				null,
@@ -77,9 +99,13 @@
 					'div',
 					{ className: 'home-page' },
 					React.createElement(Nav, null),
-					React.createElement(Footer, null)
+					React.createElement(Footer, { handleClick: this.handleClick })
 				),
-				this.props.children
+				React.cloneElement(this.props.children, {
+					animate: this.state.opacity,
+					classOpacity: this.state.opacity,
+					handleClick: this.handleClick
+				})
 			);
 		}
 	});
@@ -24500,7 +24526,7 @@
 						{ className: 'clearfix text-center' },
 						React.createElement(
 							'li',
-							{ className: 'active' },
+							{ onClick: this.props.handleClick, className: 'active' },
 							React.createElement(
 								Link,
 								{ to: '/home/23456' },
@@ -24509,7 +24535,7 @@
 						),
 						React.createElement(
 							'li',
-							null,
+							{ onClick: this.props.handleClick },
 							React.createElement(
 								Link,
 								{ to: '/message' },
@@ -24518,7 +24544,7 @@
 						),
 						React.createElement(
 							'li',
-							null,
+							{ onClick: this.props.handleClick },
 							React.createElement(
 								Link,
 								{ to: '/login/?name=fir' },
@@ -24536,7 +24562,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-
+	var Article = __webpack_require__(213);
 	module.exports = React.createClass({
 		displayName: 'exports',
 
@@ -24552,17 +24578,19 @@
 		render: function () {
 			return React.createElement(
 				'div',
-				null,
+				{ className: this.props.classOpacity },
 				React.createElement(
 					'h1',
 					null,
-					'我是首页'
+					'我是首页,url:',
+					this.state.message
 				),
+				React.createElement(Article, null),
 				React.createElement(
 					'p',
-					null,
-					'aa',
-					this.state.message
+					{ onClick: this.props.handleClick },
+					'呵呵',
+					this.props.animate
 				)
 			);
 		}
@@ -24573,101 +24601,63 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Btn = __webpack_require__(214);
-	var Form = __webpack_require__(215);
-	module.exports = React.createClass({
-		displayName: 'exports',
-
-		getInitialState: function () {
-			return {
-				display: '',
-				msg: this.props.location.query.name
-			};
-		},
-		handleClick: function () {
-			this.setState({
-				display: this.state.display == '' ? 'show' : ''
-			});
-		},
-		render: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'p',
-					null,
-					'地址:',
-					this.state.msg
-				),
-				React.createElement(
-					'h2',
-					null,
-					this.props.location.query.name
-				),
-				React.createElement(Form, { formDisplay: this.state.display }),
-				React.createElement(Btn, { handleClick: this.handleClick })
-			);
-		}
-	});
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 		displayName: "exports",
 
 		render: function () {
 			return React.createElement(
-				"button",
-				{ className: "btn btn-default", onClick: this.props.handleClick },
-				"点我"
-			);
-		}
-	});
-
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	//var ajax = require('reqwest');
-	module.exports = React.createClass({
-		displayName: 'exports',
-
-		handleClick: function () {
-			$.ajax({
-				url: '/login',
-				type: 'POST',
-				dataType: 'json',
-				data: $('form').serialize(),
-				success: function (res) {},
-				error: function (err) {}
-			});
-		},
-		render: function () {
-			return React.createElement(
-				'form',
-				{ className: "hide " + this.props.formDisplay },
+				"article",
+				{ className: "container article-box" },
 				React.createElement(
-					'h3',
-					null,
-					'表单'
+					"section",
+					{ className: "article-info" },
+					React.createElement(
+						"div",
+						{ className: "clearfix" },
+						React.createElement(
+							"div",
+							{ className: " pull-left head-box img-radius text-center" },
+							React.createElement("img", { className: "img-radius", src: "img/head1.jpg", alt: "" })
+						),
+						React.createElement(
+							"div",
+							{ className: "name-box" },
+							React.createElement(
+								"h3",
+								null,
+								"FIR"
+							),
+							React.createElement(
+								"p",
+								null,
+								"来自PC"
+							)
+						)
+					)
 				),
-				React.createElement('input', { name: 'user', type: 'text' }),
-				React.createElement('input', { name: 'psd', type: 'password' }),
-				React.createElement('br', null),
-				React.createElement('br', null),
-				React.createElement('br', null),
-				React.createElement('input', { type: 'button', className: 'btn btn-default', onClick: this.handleClick, value: '提交' })
+				React.createElement(
+					"section",
+					{ className: "article-info" },
+					React.createElement("div", null)
+				),
+				React.createElement(
+					"section",
+					{ className: "article-img" },
+					React.createElement(
+						"div",
+						null,
+						React.createElement("img", { src: "", alt: "" })
+					)
+				),
+				React.createElement("footer", { className: "article-footer" })
 			);
 		}
 	});
 
 /***/ },
-/* 216 */
+/* 214 */,
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);

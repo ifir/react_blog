@@ -9,7 +9,7 @@ var plumber = require('gulp-plumber');//捕获处理任务中的错误
 var config = require('./webpack.config.js');
 var reactjspath = 'src/components/**/*.js';
 var scsspath = 'src/assets/styles/*.scss';
-
+var imgpath = 'src/assets/images/*.*';
 
 gulp.task('sass', function (){
 	return gulp.src(scsspath)
@@ -27,6 +27,13 @@ gulp.task('webpack', function (){
   	.pipe(gulp.dest('./src/output/js'));
 });
 
+gulp.task('images', function (){
+	return gulp.src(imgpath)
+	.pipe(plumber())
+	.pipe(changed('./src/output/img'))
+  	.pipe(gulp.dest('./src/output/img'));
+});
+
 gulp.task('nodemon', function() {
 	nodemon({
 		script: 'app.js',
@@ -40,11 +47,12 @@ gulp.task('nodemon', function() {
 gulp.task('watch',function (){
 	gulp.watch(scsspath, ['sass']);
 	gulp.watch(reactjspath,['webpack']);
+	gulp.watch(imgpath,['images']);
 });
 
 gulp.task('default', function(callback){
 	 runSequence(
-	 	['sass', 'webpack', 'watch'],
+	 	['sass', 'webpack', 'images', 'watch'],
 	 	'nodemon',
 	 	callback
 	 )

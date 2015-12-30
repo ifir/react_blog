@@ -21,20 +21,45 @@ var Message = require('./message/message.js'); //消息页面
 //组件总容器
 //this.props.location.pathname
 var Main = React.createClass({
-
+	//声明初始状态
+	getInitialState : function(){
+		return {
+			opacity : '',
+			mounted: false
+		};
+	},
+	handleClick:function(){
+		this.setState({
+			opacity:this.state.opacity == '' ? 'opacity' : ''
+		})
+	},
+	//首次渲染后改变状态
+	componentDidMount : function(){
+		this.setState({mounted : true});
+	},
+	//isMounted()如果组件渲染到了 DOM 中，isMounted() 返回 true
+	//校验属性值，无效时不刷新界面
+	/*shouldComponentUpdate : function(nextProps,nextState){
+		if(nextProps.value > 220 || nextProps.value<0) return false;
+		return true;
+	},*/
 	render : function (){
 		return (
 			<div>
 				<div className="home-page">
 					<Nav />
-					<Footer />
+					<Footer handleClick={this.handleClick} />
 				</div>
 				{/* 动画插件 */}
 				{// <ReactCSSTransitionGroup component="div" transitionName="opacityup" transitionEnterTimeout={300} transitionLeave={false}>
 					// 	{this.props.children}
 				// </ReactCSSTransitionGroup>
 				}
-				{this.props.children}
+				{React.cloneElement(this.props.children, {
+		            animate:this.state.opacity,
+		            classOpacity:this.state.opacity,
+		            handleClick:this.handleClick
+		          })}
 			</div>
 		)
 	}
