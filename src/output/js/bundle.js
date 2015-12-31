@@ -24799,6 +24799,60 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
+	var TabControl = React.createClass({
+		displayName: 'TabControl',
+
+		getInitialState: function () {
+			return {
+				currentIndex: 0,
+				tabnav: [{ title: '标题一', content: '内容一' }, { title: '标题二', content: '内容二' }, { title: '标题三', content: '内容三' }]
+			};
+		},
+		handleClick: function () {
+			this.setState({
+				currentIndex: 2
+			});
+		},
+		render: function () {
+			var navmap = this.state.tabnav.map(function (arr, index) {
+				//return (<span key={index} onClick={this.handleClick}>{arr.title}</span>)
+				return React.createElement(Spannav, { handleClick: this.handleClick, key: index, titles: arr.title });
+			});
+			return React.createElement(
+				'div',
+				null,
+				navmap,
+				React.createElement(
+					'p',
+					{ onClick: this.handleClick },
+					this.state.currentIndex
+				),
+				React.createElement(
+					'p',
+					{ onClick: this.handleClick },
+					this.state.currentIndex
+				),
+				React.createElement(
+					'p',
+					{ onClick: this.handleClick },
+					this.state.currentIndex
+				)
+			);
+		}
+	});
+
+	var Spannav = React.createClass({
+		displayName: 'Spannav',
+
+		render: function () {
+			return React.createElement(
+				'span',
+				{ key: this.props.key, onClick: this.props.handleClick },
+				this.props.titles
+			);
+		}
+	});
+
 	module.exports = React.createClass({
 		displayName: 'exports',
 
@@ -24826,7 +24880,8 @@
 					'h2',
 					null,
 					'标签页切换小Demo'
-				)
+				),
+				React.createElement(TabControl, null)
 			);
 		}
 	});
