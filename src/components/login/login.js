@@ -16,10 +16,13 @@ var Login = React.createClass({
 	},
 	componentDidMount:function(){
 		var box = ReactDOM.findDOMNode(this.refs.box);
-		setTimeout(function(){
+		timer = setTimeout(function(){
 			//$('.opacityup-enter').addClass('opacityup-enter-active');
 			box.classList.add('opacityup-enter-active');
-		},10)
+		},10);
+	},
+	componentWillUnmount:function(){
+		clearTimeout(timer);
 	},
 	render : function (){
 

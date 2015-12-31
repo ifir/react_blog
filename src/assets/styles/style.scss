@@ -143,6 +143,7 @@ p{
 	background:#fff;
 	border-top:1px solid #EFEFEF;
 	@include shadow(0 2px 2px #EAEAEA);
+	margin-bottom:20px;
 	.article-info, .article-content, .article-img{
 		padding:0 10px;
 	}
@@ -173,7 +174,7 @@ p{
 		}
 	}
 	.article-content{
-		height: 103px;
+		max-height: 103px;
 		overflow: hidden;
 		margin:10px 0;
 	}
@@ -182,9 +183,8 @@ p{
 		.user-img{
 
 			width: 200px;
-			height: 200px;
+			max-height: 200px;
 			overflow: hidden;
-			line-height: 200px;
 			img{
 				width: 100%;
 				height: auto;
@@ -201,6 +201,21 @@ p{
 			font-size: 1.6em;
 			line-height: 30px;
 			width: 33.333333%;
+			position:relative;
+		}
+		.line:before, .line:after{
+			content: '';
+			position:absolute;
+			top:7px;
+			background:#E4E4E4;
+			width: 1px;
+			height: 16px;
+		}
+		.line:before{
+			left:0;
+		}
+		.line:after{
+			right: 0;
 		}
 	}
 }

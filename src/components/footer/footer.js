@@ -9,7 +9,7 @@ module.exports = React.createClass({
 					<ul className="clearfix text-center">
 						<li className="active"><Link to="/home/23456">首页</Link></li>
 						<li><Link to="/message">消息</Link></li>
-						<li><Link to="/login/?name=fir">我的</Link></li>
+						<li><Link to="/login/?name=fir">发表</Link></li>
 					</ul>
 				</nav>
 			</footer>

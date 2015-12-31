@@ -25,7 +25,7 @@ module.exports = React.createClass({
 				</section>
 				<footer className="article-footer text-center">
 					<span>阅读量</span>
-					<span>评论</span>
+					<span className="line">评论</span>
 					<span>赞</span>
 				</footer>
 			</article>

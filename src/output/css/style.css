@@ -386,6 +386,7 @@ p {
   -webkit-box-shadow: 0 2px 2px #EAEAEA;
   -moz-box-shadow: 0 2px 2px #EAEAEA;
   box-shadow: 0 2px 2px #EAEAEA;
+  margin-bottom: 20px;
 }
 
 .article-box .article-info, .article-box .article-content, .article-box .article-img {
@@ -422,7 +423,7 @@ p {
 }
 
 .article-box .article-content {
-  height: 103px;
+  max-height: 103px;
   overflow: hidden;
   margin: 10px 0;
 }
@@ -433,9 +434,8 @@ p {
 
 .article-box .article-img .user-img {
   width: 200px;
-  height: 200px;
+  max-height: 200px;
   overflow: hidden;
-  line-height: 200px;
 }
 
 .article-box .article-img .user-img img {
@@ -454,6 +454,24 @@ p {
   font-size: 1.6em;
   line-height: 30px;
   width: 33.333333%;
+  position: relative;
+}
+
+.article-box .article-footer .line:before, .article-box .article-footer .line:after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  background: #E4E4E4;
+  width: 1px;
+  height: 16px;
+}
+
+.article-box .article-footer .line:before {
+  left: 0;
+}
+
+.article-box .article-footer .line:after {
+  right: 0;
 }
 
 /* 我的消息 */

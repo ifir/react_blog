@@ -24536,7 +24536,7 @@
 							React.createElement(
 								Link,
 								{ to: '/login/?name=fir' },
-								'我的'
+								'发表'
 							)
 						)
 					)
@@ -24550,6 +24550,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
 	var Article = __webpack_require__(213);
 	module.exports = React.createClass({
 		displayName: 'exports',
@@ -24561,20 +24562,27 @@
 			var id = this.props.params.id;
 
 			this.setState({ message: id });
-			setTimeout(function () {
-				$('.opacityup-enter').addClass('opacityup-enter-active');
+
+			var box = ReactDOM.findDOMNode(this.refs.box);
+			timer = setTimeout(function () {
+				//$('.opacityup-enter').addClass('opacityup-enter-active');
+				box.classList.add('opacityup-enter-active');
 			}, 10);
+		},
+		componentWillUnmount: function () {
+			clearTimeout(timer);
 		},
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: 'home-box opacityup-enter' },
+				{ ref: 'box', className: 'home-box opacityup-enter' },
 				React.createElement(
 					'h1',
 					null,
 					'我是首页,url:',
 					this.state.message
 				),
+				React.createElement(Article, null),
 				React.createElement(Article, null),
 				React.createElement(
 					'p',
@@ -24659,7 +24667,7 @@
 					),
 					React.createElement(
 						"span",
-						null,
+						{ className: "line" },
 						"评论"
 					),
 					React.createElement(
@@ -24696,10 +24704,13 @@
 		},
 		componentDidMount: function () {
 			var box = ReactDOM.findDOMNode(this.refs.box);
-			setTimeout(function () {
+			timer = setTimeout(function () {
 				//$('.opacityup-enter').addClass('opacityup-enter-active');
 				box.classList.add('opacityup-enter-active');
 			}, 10);
+		},
+		componentWillUnmount: function () {
+			clearTimeout(timer);
 		},
 		render: function () {
 
@@ -24786,24 +24797,35 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
 
 	module.exports = React.createClass({
 		displayName: 'exports',
 
 		componentDidMount: function () {
-			setTimeout(function () {
-				$('.opacityup-enter').addClass('opacityup-enter-active');
+			var box = ReactDOM.findDOMNode(this.refs.box);
+			timer = setTimeout(function () {
+				//$('.opacityup-enter').addClass('opacityup-enter-active');
+				box.classList.add('opacityup-enter-active');
 			}, 10);
+		},
+		componentWillUnmount: function () {
+			clearTimeout(timer);
 		},
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: 'message-box opacityup-enter' },
+				{ ref: 'box', className: 'message-box opacityup-enter' },
 				React.createElement(
 					'p',
 					null,
 					'地址:',
 					this.props.location.pathname
+				),
+				React.createElement(
+					'h2',
+					null,
+					'标签页切换小Demo'
 				)
 			);
 		}
