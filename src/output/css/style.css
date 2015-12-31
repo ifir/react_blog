@@ -81,7 +81,6 @@ mark,
 audio,
 video {
   font: inherit;
-  font-size: 100%;
   margin: 0;
   padding: 0;
   vertical-align: baseline;
@@ -103,7 +102,9 @@ section {
 }
 
 body {
+  font-family: 'microsoft yahei';
   line-height: 1;
+  font-size: 62.5%;
 }
 
 ol,
@@ -127,13 +128,6 @@ q:after {
 table {
   border-spacing: 0;
   border-collapse: collapse;
-}
-
-html,
-body {
-  font-family: 'microsoft yahei';
-  width: 100%;
-  height: 100%;
 }
 
 body {
@@ -218,6 +212,40 @@ i {
   cursor: pointer;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 2.8em;
+}
+
+h2 {
+  font-size: 2.6em;
+}
+
+h3 {
+  font-size: 2.4em;
+}
+
+h4 {
+  font-size: 2.2em;
+}
+
+h5 {
+  font-size: 2.0em;
+}
+
+h6 {
+  font-size: 1.8em;
+}
+
+p {
+  font-size: 1.6em;
+  line-height: 1.1;
+}
+
 .text-left {
   text-align: left;
 }
@@ -280,6 +308,18 @@ i {
   border-radius: 5px;
 }
 
+#app {
+  height: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #f5f5f5;
+}
+
+.home-box, .message-box, .login-box {
+  padding: 60px 0;
+}
+
 .container {
   width: 100%;
   min-height: 1px;
@@ -339,6 +379,84 @@ i {
   color: red;
 }
 
+/* 文章 */
+.article-box {
+  background: #fff;
+  border-top: 1px solid #EFEFEF;
+  -webkit-box-shadow: 0 2px 2px #EAEAEA;
+  -moz-box-shadow: 0 2px 2px #EAEAEA;
+  box-shadow: 0 2px 2px #EAEAEA;
+}
+
+.article-box .article-info, .article-box .article-content, .article-box .article-img {
+  padding: 0 10px;
+}
+
+.article-box .article-info .head-box {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+}
+
+.article-box .article-info .head-box img {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.article-box .article-info .name-box {
+  margin-left: 70px;
+  height: 70px;
+  overflow: hidden;
+}
+
+.article-box .article-info .name-box h3 {
+  margin-top: 10px;
+  color: #F39C12;
+}
+
+.article-box .article-info .name-box p {
+  color: #999;
+  font-size: 1.4em;
+  margin-top: 5px;
+}
+
+.article-box .article-content {
+  height: 103px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.article-box .article-img {
+  margin: 10px 0;
+}
+
+.article-box .article-img .user-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  line-height: 200px;
+}
+
+.article-box .article-img .user-img img {
+  width: 100%;
+  height: auto;
+}
+
+.article-box .article-footer {
+  height: 30px;
+  border-top: 1px solid #E4E4E4;
+  border-bottom: 1px solid #E4E4E4;
+}
+
+.article-box .article-footer span {
+  display: inline-block;
+  font-size: 1.6em;
+  line-height: 30px;
+  width: 33.333333%;
+}
+
+/* 我的消息 */
 .opacity {
   opacity: 0;
   -webkit-transition: all 0.3s ease-in;
@@ -392,54 +510,4 @@ i {
   -ms-transform: translate3d(0, 50px, 0);
   -o-transform: translate3d(0, 50px, 0);
   transform: translate3d(0, 50px, 0);
-}
-
-/* 文章 */
-.article-box .article-info, .article-box .article-info, .article-box .article-img {
-  padding: 0 10px;
-}
-
-.article-box .article-info .head-box {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-}
-
-.article-box .article-info .head-box img {
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-}
-
-.article-box .article-info .name-box {
-  margin-left: 70px;
-  height: 70px;
-  overflow: hidden;
-}
-
-.article-box .article-info .name-box h3 {
-  margin-top: 10px;
-}
-
-.article-box .user-img {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  line-height: 200px;
-}
-
-.article-box .user-img img {
-  width: 100%;
-  height: auto;
-}
-
-/* 我的消息 */
-#app {
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.home-box, .message-box, .login-box {
-  padding: 60px 0;
 }

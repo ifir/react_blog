@@ -24633,15 +24633,11 @@
 				),
 				React.createElement(
 					"section",
-					{ className: "article-info" },
+					{ className: "article-content" },
 					React.createElement(
-						"div",
-						{ className: "article-content" },
-						React.createElement(
-							"p",
-							null,
-							"先从漫画整体来说，因为本周漫画最后大妈的实力尾随到了象岛导致现在局面比较混乱。路飞现在看来惹到了除红发以外的所谓四皇，首先在鱼人岛跟大妈结下了梁子。这次因为抢夺凯撒可能又会惹到大妈。其次就是凯多，因为击败小唐已经惹到了凯多。而在象岛山治击败了凯多的一个手下。而路飞在这话也说了要打飞凯多。在德雷斯罗萨冠军和黑胡子跟路飞以往的那些事情，跟黑胡子也有梁子。而黑胡子已经摸到了革命军的总部，而那里有路飞的老爸和萨博。"
-						)
+						"p",
+						null,
+						"先从漫画整体来说，因为本周漫画最后大妈的实力尾随到了象岛导致现在局面比较混乱。路飞现在看来惹到了除红发以外的所谓四皇，首先在鱼人岛跟大妈结下了梁子。这次因为抢夺凯撒可能又会惹到大妈。其次就是凯多，因为击败小唐已经惹到了凯多。而在象岛山治击败了凯多的一个手下。而路飞在这话也说了要打飞凯多。在德雷斯罗萨冠军和黑胡子跟路飞以往的那些事情，跟黑胡子也有梁子。而黑胡子已经摸到了革命军的总部，而那里有路飞的老爸和萨博。"
 					)
 				),
 				React.createElement(
@@ -24653,7 +24649,25 @@
 						React.createElement("img", { src: "img/pic1.jpg", alt: "" })
 					)
 				),
-				React.createElement("footer", { className: "article-footer" })
+				React.createElement(
+					"footer",
+					{ className: "article-footer text-center" },
+					React.createElement(
+						"span",
+						null,
+						"阅读量"
+					),
+					React.createElement(
+						"span",
+						null,
+						"评论"
+					),
+					React.createElement(
+						"span",
+						null,
+						"赞"
+					)
+				)
 			);
 		}
 	});
