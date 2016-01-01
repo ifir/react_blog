@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');//编译sass
-var webpack = require('gulp-webpack');//连接webpack.config.js
+var webpack = require('webpack-stream');//连接webpack.config.js
 var nodemon = require('gulp-nodemon');//实时重启服务
 var runSequence = require('run-sequence');//任务先后順序
 var changed = require('gulp-changed');//过滤变动的文件
