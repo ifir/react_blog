@@ -103,7 +103,6 @@ section {
 
 body {
   font-family: 'microsoft yahei';
-  line-height: 1;
   font-size: 62.5%;
 }
 
@@ -174,7 +173,6 @@ body {
 
 select,
 input {
-  font-size: 1em;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;

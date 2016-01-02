@@ -46,14 +46,12 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158); //render react
-	//react adds css animate
-	//var ReactCSSTransitionGroup  = require('react/lib/ReactCSSTransitionGroup');
 
 	//react-router
 	var ReactRouter = __webpack_require__(159);
 	var Router = ReactRouter.Router;
 	var Route = ReactRouter.Route;
-	var Link = ReactRouter.Link; //链接模块  可看成a
+	var Link = ReactRouter.Link; //链接模块  可看成<a>
 	var IndexRoute = ReactRouter.IndexRoute; //默认加载的路由
 	var IndexLink = ReactRouter.IndexLink; //默认加载的link
 	var browserHistory = ReactRouter.browserHistory;
@@ -24497,38 +24495,41 @@
 		getInitialState: function () {
 			return {
 				currentIndex: 0,
-				tabnav: [{ title: '标题一', content: '内容一' }, { title: '标题二', content: '内容二' }, { title: '标题三', content: '内容三' }]
+				tabnav: [{ title: '标题一', content: '内容一', active: "active" }, { title: '标题二', content: '内容二', active: "" }, { title: '标题三', content: '内容三', active: "" }],
+				active: 'active'
 			};
 		},
-		handleClick: function () {
+		handleClick: function (e) {
+			var index = e.target.getAttribute('data-id');
 			this.setState({
-				currentIndex: 2
+				currentIndex: index
 			});
+			console.log(this.state.currentIndex);
 		},
+		// classIndex:function(){
+		// 	var c = index === this.state.currentIndex ? 'active' : '';
+		// 	return c;
+		// },
+		// getConIndex:function(){
+		// 	return index === this.state.currentIndex ? 'active' : '';
+		// },
 		render: function () {
-			var navmap = this.state.tabnav.map(function (arr, index) {
+
+			var self = this;
+			var navmap = this.state.tabnav.map((function (arr, index) {
+				var cn = index == this.state.currentIndex ? 'active' : '';
+				return React.createElement(Spannav, { active: cn, handleClick: this.handleClick, key: index, titles: arr.title, index: index });
+			}).bind(this));
+			var conmap = this.state.tabnav.map(function (arr, index) {
 				//return (<span key={index} onClick={this.handleClick}>{arr.title}</span>)
-				return React.createElement(Spannav, { handleClick: this.handleClick, key: index, titles: arr.title });
+				return React.createElement(Contentnav, { key: index, con: arr.content, index: index, active: arr.active });
 			});
+
 			return React.createElement(
 				'div',
 				null,
 				navmap,
-				React.createElement(
-					'p',
-					{ onClick: this.handleClick },
-					this.state.currentIndex
-				),
-				React.createElement(
-					'p',
-					{ onClick: this.handleClick },
-					this.state.currentIndex
-				),
-				React.createElement(
-					'p',
-					{ onClick: this.handleClick },
-					this.state.currentIndex
-				)
+				conmap
 			);
 		}
 	});
@@ -24539,10 +24540,28 @@
 		render: function () {
 			return React.createElement(
 				'span',
-				{ key: this.props.key, onClick: this.props.handleClick },
+				{ 'data-id': this.props.index, className: this.props.active, onClick: this.props.handleClick },
 				this.props.titles
 			);
 		}
+	});
+
+	var Contentnav = React.createClass({
+		displayName: 'Contentnav',
+
+		getInitialState: function () {
+			return {
+				contentIndex: this.props.index
+			};
+		},
+		render: function () {
+			return React.createElement(
+				'div',
+				null,
+				this.props.con
+			);
+		}
+
 	});
 
 	module.exports = React.createClass({

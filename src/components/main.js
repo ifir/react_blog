@@ -1,13 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom'); //render react
-//react adds css animate
-//var ReactCSSTransitionGroup  = require('react/lib/ReactCSSTransitionGroup');
 
 //react-router
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route;
-var Link = ReactRouter.Link; //链接模块  可看成a
+var Link = ReactRouter.Link; //链接模块  可看成<a>
 var IndexRoute = ReactRouter.IndexRoute; //默认加载的路由
 var IndexLink = ReactRouter.IndexLink; //默认加载的link
 var browserHistory = ReactRouter.browserHistory;
@@ -61,4 +59,4 @@ var R = (
 
 ReactDOM.render(
  R, document.getElementById('app')
-);
+);	

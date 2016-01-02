@@ -5,29 +5,44 @@ var ReactDOM = require('react-dom');
 var TabControl = React.createClass({
 	getInitialState: function(){
 		return {
-			currentIndex: 0,
-			tabnav:[{title:'标题一', content:'内容一'},
-					{title:'标题二', content:'内容二'},
-					{title:'标题三', content:'内容三'}
+			currentIndex:0,
+			tabnav:[{title:'标题一', content:'内容一',active:"active"},
+					{title:'标题二', content:'内容二',active:""},
+					{title:'标题三', content:'内容三',active:""}
 			],
+			active:'active'
 		}
 	},
-	handleClick:function(){
+	handleClick:function(e){
+		var index = e.target.getAttribute('data-id');
 		this.setState({
-			currentIndex: 2
-		})
-	},
-	render:function(){
-		var navmap = this.state.tabnav.map(function(arr, index){
-			//return (<span key={index} onClick={this.handleClick}>{arr.title}</span>)
-		return (<Spannav handleClick={this.handleClick} key={index} titles={arr.title} />)
+			currentIndex:index
 		});
+		console.log(this.state.currentIndex)
+	},
+	// classIndex:function(){
+	// 	var c = index === this.state.currentIndex ? 'active' : '';
+	// 	return c;
+	// },
+	// getConIndex:function(){
+	// 	return index === this.state.currentIndex ? 'active' : '';
+	// },
+	render:function(){
+
+		var self = this;
+		var navmap = this.state.tabnav.map(function(arr, index){
+			var cn = index==this.state.currentIndex ? 'active' : '';
+			return <Spannav active={cn} handleClick={this.handleClick} key={index} titles={arr.title} index={index}/>
+		}.bind(this));
+		var conmap = this.state.tabnav.map(function(arr, index){
+			//return (<span key={index} onClick={this.handleClick}>{arr.title}</span>)
+			return (<Contentnav key={index} con={arr.content} index={index} active={arr.active} />)
+		});
+		
 		return (
 			<div>
 				{navmap}
-				<p onClick={this.handleClick}>{this.state.currentIndex}</p>
-				<p onClick={this.handleClick}>{this.state.currentIndex}</p>
-				<p onClick={this.handleClick}>{this.state.currentIndex}</p>
+				{conmap}
 			</div>
 		)
 	}
@@ -36,10 +51,26 @@ var TabControl = React.createClass({
 var Spannav = React.createClass({
 	render:function(){
 		return (
-			<span key={this.props.key} onClick={this.props.handleClick}>{this.props.titles}</span>
+			<span data-id={this.props.index} className={this.props.active} onClick={this.props.handleClick}>{this.props.titles}</span>
 		)
 	}
-})
+});
+
+var Contentnav = React.createClass({
+	getInitialState: function() {
+		return {
+			contentIndex:this.props.index
+		};
+	},
+	render: function() {
+		return (
+			<div>{this.props.con}</div>
+		);
+	}
+
+});
+
+
 
 module.exports = React.createClass({
 	componentDidMount : function(){
