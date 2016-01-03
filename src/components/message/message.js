@@ -6,38 +6,30 @@ var TabControl = React.createClass({
 	getInitialState: function(){
 		return {
 			currentIndex:0,
-			tabnav:[{title:'标题一', content:'内容一',active:"active"},
-					{title:'标题二', content:'内容二',active:""},
-					{title:'标题三', content:'内容三',active:""}
+			tabnav:[{title:'标题一', content:'内容一'},
+					{title:'标题二', content:'内容二'},
+					{title:'标题三', content:'内容三'}
 			],
 			active:'active'
 		}
 	},
-	handleClick:function(e){
-		var index = e.target.getAttribute('data-id');
+	handleClick:function(index){
+		//var index = e.target.getAttribute('data-id');
 		this.setState({
 			currentIndex:index
 		});
-		console.log(this.state.currentIndex)
 	},
-	// classIndex:function(){
-	// 	var c = index === this.state.currentIndex ? 'active' : '';
-	// 	return c;
-	// },
-	// getConIndex:function(){
-	// 	return index === this.state.currentIndex ? 'active' : '';
-	// },
 	render:function(){
 
 		var self = this;
 		var navmap = this.state.tabnav.map(function(arr, index){
-			var cn = index==this.state.currentIndex ? 'active' : '';
-			return <Spannav active={cn} handleClick={this.handleClick} key={index} titles={arr.title} index={index}/>
-		}.bind(this));
+			var cn = index === this.state.currentIndex ? 'active' : '';
+				return ( <Spannav active={cn} handleClick={this.handleClick.bind(this,index)} key={index} titles={arr.title} index={index}/>)
+			}.bind(this)) ;
 		var conmap = this.state.tabnav.map(function(arr, index){
-			//return (<span key={index} onClick={this.handleClick}>{arr.title}</span>)
-			return (<Contentnav key={index} con={arr.content} index={index} active={arr.active} />)
-		});
+			var cn = index === this.state.currentIndex ? 'active' : '';
+			return ( <Contentnav active={cn} key={index} con={arr.content} />)
+		}.bind(this));
 		
 		return (
 			<div>
@@ -57,15 +49,10 @@ var Spannav = React.createClass({
 });
 
 var Contentnav = React.createClass({
-	getInitialState: function() {
-		return {
-			contentIndex:this.props.index
-		};
-	},
 	render: function() {
 		return (
-			<div>{this.props.con}</div>
-		);
+			<div className={this.props.active}>{this.props.con}</div>
+		)
 	}
 
 });

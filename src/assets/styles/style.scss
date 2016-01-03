@@ -93,7 +93,14 @@ p{
 	width:100%;
 	min-height:1px;
 }
+span{
+	@include transition(all 1s ease);
 
+}
+span.active, div.active{
+	color:$color-a;
+	font-size:1.8em;
+}
 
 /* 顶部导航栏 */
 .navbar{

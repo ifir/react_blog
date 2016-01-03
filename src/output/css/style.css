@@ -323,6 +323,19 @@ p {
   min-height: 1px;
 }
 
+span {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+span.active, div.active {
+  color: #F39C12;
+  font-size: 1.8em;
+}
+
 /* 顶部导航栏 */
 .navbar {
   width: 100%;
