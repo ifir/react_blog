@@ -30,7 +30,7 @@ var TabControl = React.createClass({
 			var cn = index === this.state.currentIndex ? 'active' : '';
 			return ( <Contentnav active={cn} key={index} con={arr.content} />)
 		}.bind(this));
-		
+
 		return (
 			<div>
 				{navmap}
@@ -76,7 +76,7 @@ module.exports = React.createClass({
 				{
 					//获取url上的地址this.props.location.pathname
 				}
-				<p>地址:{this.props.location.pathname }</p>
+				<p>地址:{this.props.route/*this.props.location.pathname*/ }</p>
 				<h2>标签页切换小Demo</h2>
 				<TabControl />
 			</div>
