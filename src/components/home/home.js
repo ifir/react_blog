@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+//引入组件
 var Article = require('../article/article.js');
 module.exports = React.createClass({
 	componentDidMount:function() {
