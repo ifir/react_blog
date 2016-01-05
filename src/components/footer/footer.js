@@ -1,15 +1,15 @@
 var React = require('react');
-// var ReactRouter = require('react-router');
-// var Link = ReactRouter.Link;
+var Link = require('react-router').Link;
+
 module.exports = React.createClass({
 	render : function (){
 		return (
 			<footer className="container footer">
 				<nav>
 					<ul className="clearfix text-center">
-						<li className="active"><a href="#!/home">首页</a></li>
-						<li><a href="#!/message">消息</a></li>
-						<li><a href="#!/login">发表</a></li>
+						<li className="active"><Link to="/home">首页</Link></li>
+						<li><Link to="/message">消息</Link></li>
+						<li><Link to="/login">发表</Link></li>
 					</ul>
 				</nav>
 			</footer>

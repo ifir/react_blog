@@ -28,7 +28,7 @@ var Login = React.createClass({
 
 		return (
 			<div ref="box" className="login-box opacityup-enter">
-				<p>地址:{this.props.route/*this.state.msg*/}</p>
+				<p>地址:{/*this.state.msg*/}</p>
 				<h2>{/*this.props.location.query.name*/}</h2>
 				<Form formDisplay={this.state.display} />
 				<Btn handleClick={this.handleClick}/>

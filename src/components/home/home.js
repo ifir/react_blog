@@ -2,9 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Article = require('../article/article.js');
 module.exports = React.createClass({
-	getInitialState:function(){
-		return {message:''}
-	},
 	componentDidMount:function() {
 	  // var id = this.props.params.id
 
@@ -22,11 +19,9 @@ module.exports = React.createClass({
 	render:function(){
 		return (
 			<div ref="box" className="home-box opacityup-enter">
-				<h1>我是首页,url:{this.props.route/*this.state.message*/}</h1>
+				<h1>我是首页,url:</h1>
 				<Article />
 				<Article />
-				<p className={this.props.classOpacity}>？？？？？？？</p>
-				<p onClick={this.props.handleClick}>点我</p>
 			</div>
 		)
 	}
